@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Discrimination App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="page">
+            <h1>POWERPUFF GIRLS</h1>
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Login Page -->
+        <section id="login-page" class="page active">
+            <div class="login-header-title">Log In</div>
+            <div class="login-form-container">
+                <div class="auth-toggle">
+                    <button class="toggle-btn active" id="login-toggle-btn">Log In</button>
+                    <button class="toggle-btn" id="signup-toggle-btn">Sign Up</button>
+                </div>
+                <input type="email" id="email" placeholder="Email Address">
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Password">
+                    <i class="fas fa-eye-slash" id="togglePassword"></i>
+                </div>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+                <button id="login-btn" class="primary-btn">Log In</button>
+            </div>
+        </section>
+
+        <!-- Forgot Password Page -->
+        <section id="forgot-password-page" class="page hidden">
+            <div class="forgot-password-header-title">Forgot Password</div>
+            <div class="forgot-password-form-container">
+                <p class="instructions">Enter the email address associated with your account, and we'll send you a link to reset your password.</p>
+                <input type="email" id="forgot-email" placeholder="Email Address">
+                <button id="send-reset-link-btn" class="primary-btn">Send Reset Link</button>
+                <button id="back-to-login-btn" class="secondary-btn">Back to Login</button>
+            </div>
+        </section>
+
+        <!-- Sign Up Page -->
+        <section id="signup-page" class="page hidden">
+            <div class="signup-header-title">Sign Up</div>
+            <div class="signup-form-container">
+                <div class="auth-toggle">
+                    <button class="toggle-btn" id="login-toggle-btn-signup">Log In</button>
+                    <button class="toggle-btn active" id="signup-toggle-btn-signup">Sign Up</button>
+                </div>
+                <input type="text" id="full-name-signup" placeholder="Full Name">
+                <input type="email" id="email-signup" placeholder="Email Address">
+                <div class="password-wrapper">
+                    <input type="password" id="password-signup" placeholder="Password">
+                    <i class="fas fa-eye-slash" id="togglePasswordSignup"></i>
+                </div>
+                <div class="password-wrapper">
+                    <input type="password" id="confirm-password-signup" placeholder="Confirm Password">
+                    <i class="fas fa-eye-slash" id="toggleConfirmPasswordSignup"></i>
+                </div>
+                <button id="create-account-btn" class="primary-btn">Create Account</button>
+            </div>
+        </section>
+
+        <!-- Main App Content Area (Header, Main, Bottom Nav) -->
+        <div id="main-app-content" class="hidden">
+            <header>
+                <button id="menu-btn" class="icon-btn"><i class="fas fa-bars"></i></button>
+                <h2 id="header-title">Home</h2>
+                <div id="header-actions">
+                    <!-- e.g., Edit button for Profile page -->
+                </div>
+            </header>
+
+            <main>
+                <!-- Home Page -->
+                <section id="home-page" class="page">
+                    <!-- Slideshow Container -->
+                    <div class="slideshow-container">
+                        <div class="slide fade">
+                            <img src="https://peoplesdispatch.org/wp-content/uploads/2023/03/22-03-Anti-racism-Day-2-768x513.jpg" alt="Anti-racism protest image">
+                        </div>
+                        <div class="slide fade">
+                            <img src="https://krannert.purdue.edu/news/features/2022/images/employment-discrimination-banner.jpg" alt="Employment discrimination concept image">
+                        </div>
+                        <div class="slide fade">
+                             <img src="https://s3.amazonaws.com/mta-website-staging/mta-website-staging/files/Safety/Anti-Harassment/harassment-banner-people-web.jpg" alt="Anti-harassment campaign image">
+                        </div>
+                         <div class="slide fade">
+                             <img src="https://www.kirafonteneau.com/wp-content/uploads/2018/06/Types-of-Discrimination-Explained.gif" alt="Diagram explaining types of discrimination">
+                        </div>
+
+                        <a class="prev" onclick="plusSlides(-1)">❮</a>
+                        <a class="next" onclick="plusSlides(1)">❯</a>
+                    </div>
+                    <div class="slide-dots">
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
+                    </div>
+                    <!-- End Slideshow Container -->
+
+                    <div class="search-bar-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="search-quotes" placeholder="Search quotes by text or author...">
+                    </div>
+                    <h3>Inspiring Quotes</h3>
+                    <div id="quotes-container">
+                        <!-- Quotes will be injected here by JS -->
+                    </div>
+                </section>
+
+                <!-- Profile Page -->
+                <section id="profile-page" class="page hidden">
+                    <div class="profile-header">
+                        <div class="profile-pic" id="profile-pic-display">BP</div>
+                        <h3 id="profile-name-display">Blossom Powerpuff</h3>
+                        <p id="profile-subtitle-display">Leading with strength and smarts!</p>
+                    </div>
+                    <h4>Advocacy Badges</h4>
+                    <div class="badges-container" id="profile-badges-display">
+                        <!-- Badges displayed here -->
+                    </div>
+                    <h4>About Me</h4>
+                    <p id="profile-about-me-display" class="profile-about-text">Commander and leader...</p>
+                </section>
+
+                <!-- Edit Profile Page -->
+                <section id="edit-profile-page" class="page hidden">
+                    <div class="profile-header">
+                         <div class="profile-pic-edit" id="profile-pic-edit-display">BP</div>
+                        <input type="text" id="edit-profile-name" value="Blossom Powerpuff">
+                        <input type="text" id="edit-profile-subtitle" value="Leading with strength and smarts!">
+                    </div>
+                    <h4>Advocacy Badges <span class="tap-to-select">(Tap to select/deselect)</span></h4>
+                    <div class="badges-container" id="edit-profile-badges">
+                        <!-- Editable badges here -->
+                    </div>
+                    <h4>About Me</h4>
+                    <textarea id="edit-profile-about-me">Commander and leader...</textarea>
+                </section>
+
+                <!-- Chat Page -->
+                <section id="chat-page" class="page hidden">
+                    <div class="chat-panel-wrapper">
+                        <!-- <div class="chat-panel-header">Chat Assistant</div> --> <!-- Optional Header -->
+                        <div class="chat-window" id="chat-window">
+                            <div class="chat-message bot">
+                                Hello! I am your anti-discrimination assistant. How can I help you today?
+                            </div>
+                            <!-- Typing indicator will be added here by JS -->
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" id="chat-message-input" placeholder="Type your message...">
+                            <button id="send-chat-btn"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Page -->
+                <section id="settings-page" class="page hidden">
+                    <h4>Display</h4>
+                    <div class="settings-item">
+                        <span><i class="fas fa-moon"></i> Dark Mode</span>
+                        <label class="switch">
+                            <input type="checkbox" id="dark-mode-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <h4>Account & App</h4>
+                    <div class="settings-item" data-page="account-sub-page">
+                        <span><i class="fas fa-user-circle"></i> Account</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="settings-item" data-page="notifications-sub-page">
+                        <span><i class="fas fa-bell"></i> Notifications</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="settings-item" data-page="privacy-policy-sub-page">
+                        <span><i class="fas fa-shield-alt"></i> Privacy Policy</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="settings-item" data-page="about-app-page">
+                        <span><i class="fas fa-info-circle"></i> About App</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="settings-item" data-page="help-support-sub-page">
+                        <span><i class="fas fa-question-circle"></i> Help & Support</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <button id="logout-settings-btn" class="logout-btn-settings">
+                        <i class="fas fa-sign-out-alt"></i> Log Out
+                    </button>
+                </section>
+
+                <!-- About This App Page -->
+                <section id="about-app-page" class="page hidden sub-page">
+                    <p>This application is dedicated to raising awareness about various forms of discrimination and promoting a more inclusive and equitable society.</p>
+                    <p>Our goal is to provide information, resources, and a platform for discussion to help combat discrimination in all its forms.</p>
+                    <p>Explore the different categories to learn more about specific issues, their impacts, and potential solutions.</p>
+                </section>
+
+                <!-- Discrimination Category Page (Generic Structure) -->
+                <section id="category-page" class="page hidden sub-page">
+                    <div class="category-tabs">
+                        <button class="tab-link active" data-tab="impact">Impact</button>
+                        <button class="tab-link" data-tab="solutions">Solutions</button>
+                        <button class="tab-link" data-tab="problems">Problems</button>
+                        <button class="tab-link" data-tab="laws">Laws</button>
+                        <button class="tab-link" data-tab="questions">Questions</button>
+                    </div>
+                    <div id="category-content-area">
+                        <!-- Content for tabs will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Account Sub-Page -->
+                <section id="account-sub-page" class="page hidden sub-page">
+                    <div class="account-section">
+                        <h4>Profile Information</h4>
+                        <div class="form-group">
+                            <label for="account-profile-name">Name</label>
+                            <input type="text" id="account-profile-name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="account-profile-subtitle">Subtitle/Tagline</label>
+                            <input type="text" id="account-profile-subtitle" placeholder="Your Subtitle">
+                        </div>
+                         <div class="form-group">
+                            <label for="account-profile-about">About Me</label>
+                            <textarea id="account-profile-about" placeholder="Tell us about yourself..."></textarea>
+                        </div>
+                        <p><strong>Email:</strong> <span id="account-email-display">user@example.com</span> <small>(Email not editable in this demo)</small></p>
+                        <button id="save-account-profile-btn" class="primary-btn small-btn">Save Profile Info</button>
+                    </div>
+
+                    <div class="account-section">
+                        <h4>Change Password</h4>
+                        <div class="form-group">
+                            <label for="current-password">Current Password</label>
+                            <input type="password" id="current-password" placeholder="Enter current password">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">New Password</label>
+                            <input type="password" id="new-password" placeholder="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-new-password">Confirm New Password</label>
+                            <input type="password" id="confirm-new-password" placeholder="Confirm new password">
+                        </div>
+                        <button id="change-password-btn" class="primary-btn small-btn">Update Password</button>
+                    </div>
+
+                    <div class="account-section">
+                        <h4>Account Management</h4>
+                        <button id="deactivate-account-btn" class="danger-btn">Deactivate Account</button>
+                    </div>
+                </section>
+
+                <!-- Notifications Sub-Page -->
+                <section id="notifications-sub-page" class="page hidden sub-page">
+                    <h4>General Notifications</h4>
+                    <div class="settings-item notification-toggle-item">
+                        <span><i class="fas fa-bell"></i> Enable All Notifications</span>
+                        <label class="switch">
+                            <input type="checkbox" id="enable-all-notifications-toggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <h4>Specific Notifications</h4>
+                    <div class="settings-item notification-toggle-item">
+                        <span><i class="fas fa-quote-right"></i> New Inspiring Quotes</span>
+                        <label class="switch">
+                            <input type="checkbox" id="quote-notifications-toggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="settings-item notification-toggle-item">
+                        <span><i class="fas fa-bullhorn"></i> Advocacy Topic Updates</span>
+                        <label class="switch">
+                            <input type="checkbox" id="advocacy-notifications-toggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="settings-item notification-toggle-item">
+                        <span><i class="fas fa-comments"></i> New Chat Messages</span>
+                        <label class="switch">
+                            <input type="checkbox" id="chat-notifications-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Privacy Policy Sub-Page -->
+                <section id="privacy-policy-sub-page" class="page hidden sub-page">
+                    <h3>Privacy Policy</h3>
+                    <p>Your privacy is important to us. This privacy policy explains how we collect, use, disclose, and safeguard your information when you use our application.</p>
+                    <h4>Information Collection and Use</h4>
+                    <p>We may collect personal identification information (Name, email address, etc.) when you register or use certain features. This information is used to personalize your experience and improve our services.</p>
+                    <h4>Log Data</h4>
+                    <p>We may also collect information that your browser sends whenever you visit our Service ("Log Data"). This Log Data may include information such as your computer's Internet Protocol ("IP") address, browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, and other statistics.</p>
+                    <h4>Cookies</h4>
+                    <p>Cookies are files with a small amount of data, which may include an anonymous unique identifier. We use cookies to collect information to improve our services for you.</p>
+                    <h4>Security</h4>
+                    <p>The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage, is 100% secure.</p>
+                    <h4>Changes to This Privacy Policy</h4>
+                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+                    <p><em>Last updated: [Current Date]</em></p>
+                </section>
+
+                 <!-- Help & Support Sub-Page -->
+                 <section id="help-support-sub-page" class="page hidden sub-page">
+                    <h3>Help & Support</h3>
+                    <p>If you need help or have questions about the app, please refer to our FAQ section or contact support.</p>
+                    <h4>Frequently Asked Questions</h4>
+                    <p><strong>Q: How do I change my password?</strong><br>A: Navigate to Account settings to manage your password.</p>
+                    <p><strong>Q: How can I report an issue?</strong><br>A: Please use the contact form on our website or email support@example.com.</p>
+                    <h4>Contact Us</h4>
+                    <p>Email: support@example.com</p>
+                </section>
+            </main>
+
+            <nav class="bottom-nav">
+                <button class="nav-item active" data-page="home-page"><i class="fas fa-home"></i></button>
+                <button class="nav-item" data-page="profile-page"><i class="fas fa-user"></i></button>
+                <button class="nav-item" data-page="chat-page"><i class="fas fa-comments"></i></button>
+                <button class="nav-item" data-page="settings-page"><i class="fas fa-cog"></i></button>
+            </nav>
+        </div>
+
+        <!-- Side Menu (Drawer) -->
+        <aside id="side-menu" class="side-menu">
+            <div class="side-menu-header">
+                <h3>Learn More</h3>
+                <button id="close-menu-btn" class="icon-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <button class="side-menu-item" data-page="about-app-page" data-title="About This App">
+                <i class="fas fa-info-circle"></i> What is Anti-Discrimi...
+            </button>
+            <h4>Discrimination Categories</h4>
+            <ul id="category-menu-list">
+                <!-- Categories will be injected here -->
+            </ul>
+            <button id="logout-menu-btn" class="side-menu-item logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </aside>
+        <div id="overlay" class="hidden"></div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
